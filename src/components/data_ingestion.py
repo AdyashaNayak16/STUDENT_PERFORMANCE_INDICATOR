@@ -4,6 +4,7 @@ from src.logger import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
+from src.components.data_transformation import DataTransformation,DatatransformationConfig
 
 # Anchor everything to your project root
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -54,4 +55,8 @@ class DataIngestion:
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transfrom=DataTransformation()
+    data_transfrom.initiate_data_transformation(train_data,test_data)
+
