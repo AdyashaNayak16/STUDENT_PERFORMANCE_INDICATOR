@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation,DatatransformationConfig
+from src.components.model_trainer import model_trainerConfig,model_trainer
 
 # Anchor everything to your project root
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -58,5 +59,7 @@ if __name__ == "__main__":
     train_data,test_data=obj.initiate_data_ingestion()
 
     data_transfrom=DataTransformation()
-    data_transfrom.initiate_data_transformation(train_data,test_data)
+    train_arr,test_arr=data_transfrom.initiate_data_transformation(train_data,test_data)
+    model_trainer=model_trainer()
+    print(model_trainer.initiate_model_trainer(train_arr,test_arr))
 
